@@ -1,8 +1,28 @@
 ---
 export interface Props {
 	title: string;
+    className: string;
+    payload: string;
 }
 
-const {title} = Astro.props;
+const {title, className, payload} = Astro.props;
 ---
-<button>{title}</button>
+<our-button data-payload={payload}>
+    <button class={className} >{title}</button>
+</our-button>
+<script>
+    // Define the behaviour for our new type of HTML element.
+    class OurButton extends HTMLElement {
+        constructor() {
+        super();
+
+        const ourButton = this.querySelector('button');
+        const payload = this.dataset.payload
+        // Each time the button is clicked, update the count.
+        ourButton && ourButton.addEventListener('click', ()=>{console.log(payload)});
+        }
+    }
+
+    // Tell the browser to use our AstroHeart class for <astro-heart> elements.
+    customElements.define('our-button', OurButton);
+</script>
