@@ -3,11 +3,18 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 
 const name = "Khalid";
+
+const isWhite = true;
+const isAdmin = false;
+const gamesPlayed = 39;
 ---
 
 <Layout title="Chess Baby.">
 	<main>
 		<h1>Welcome to <span class="text-gradient">Chess</span>, {name}</h1>
+        {isWhite && <p>"You go first"</p>}
+        {isAdmin && <p>"You're an admin"</p>}
+        {gamesPlayed > 50 ? <p>You've played more than 50 games!</p> : <p>You've played only {gamesPlayed} games.</p>}
 		<p class="instructions">
 			This is the chess zone mofo.
 		</p>
